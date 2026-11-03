@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -29,7 +29,7 @@ jobs:
       - name: Extract Project
         run: unzip -q MizanTilawa.zip -d project
 
-      - name: Build APK
+      - name: Build Debug APK
         working-directory: project
         run: gradle --no-daemon assembleDebug
 
@@ -38,3 +38,4 @@ jobs:
         with:
           name: MizanTilawa-APK
           path: project/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
